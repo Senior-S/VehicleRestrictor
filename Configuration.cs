@@ -14,7 +14,7 @@ namespace VehicleRestrictor
 
         public bool Enabled;
 
-        Vehicle toAdd = new Vehicle
+        private Vehicle toAdd = new Vehicle
         {
             ID = 1,
             Permission = "ss.blackoffroader"

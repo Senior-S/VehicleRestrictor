@@ -27,7 +27,7 @@ namespace VehicleRestrictor.Commands
 
             if (command.Length != 2)
             {
-                UnturnedChat.Say(user, "Error! Correct usage /removerestrict <vehicle id>", UnityEngine.Color.red,false);
+                UnturnedChat.Say(user, "Error! Correct usage /removerestrict <vehicle id>", UnityEngine.Color.red, false);
                 return;
             }
 

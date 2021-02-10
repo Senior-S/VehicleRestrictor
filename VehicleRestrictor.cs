@@ -28,10 +28,32 @@ namespace VehicleRestrictor
             Instance = this;
 
             VehicleManager.onEnterVehicleRequested += OnEnterVehicleRequested;
+            VehicleManager.onSwapSeatRequested += VehicleManager_onSwapSeatRequested;
+        }
+
+        private void VehicleManager_onSwapSeatRequested(Player player, InteractableVehicle vehicle, ref bool shouldAllow, byte fromSeatIndex, ref byte toSeatIndex)
+        {
+            if (toSeatIndex == 0)
+            {
+                var check = Configuration.Instance.RestrictedVehicles.Where(v => v.ID == vehicle.id).FirstOrDefault();
+                if (check != null)
+                {
+                    UnturnedPlayer user = UnturnedPlayer.FromPlayer(player);
+                    if (!R.Permissions.HasPermission(user, new List<string> { check.Permission }))
+                    {
+                        shouldAllow = false;
+                        UnturnedChat.Say(user, Translate("no_permission"), true);
+                    }
+                }
+            }
         }
 
         private void OnEnterVehicleRequested(Player player, InteractableVehicle vehicle, ref bool shouldAllow)
         {
+            if (vehicle.isDriven)
+            {
+                shouldAllow = true;
+            }
             var check = Configuration.Instance.RestrictedVehicles.Where(v => v.ID == vehicle.id).FirstOrDefault();
             if (check != null)
             {

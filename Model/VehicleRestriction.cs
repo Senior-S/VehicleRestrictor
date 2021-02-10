@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VehicleRestrictor.Model
+﻿namespace VehicleRestrictor.Model
 {
     public class Vehicle
     {

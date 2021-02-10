@@ -27,7 +27,7 @@ namespace VehicleRestrictor.Commands
 
             if (command.Length != 2)
             {
-                UnturnedChat.Say(user, "Error! Correct usage /restrictvehicle <vehicle id> <permission>", UnityEngine.Color.red,false);
+                UnturnedChat.Say(user, "Error! Correct usage /restrictvehicle <vehicle id> <permission>", UnityEngine.Color.red, false);
                 return;
             }
 
@@ -42,7 +42,7 @@ namespace VehicleRestrictor.Commands
                     ID = vehicleId,
                     Permission = command[1]
                 };
-                
+
                 main.Configuration.Instance.RestrictedVehicles.Add(toAdd);
                 UnturnedChat.Say(user, main.Translate("vehicle_restricted"), UnityEngine.Color.green, true);
             }
